@@ -15,7 +15,7 @@ public class Panel extends JPanel{
 	
 	private final int W = 400, H = 560;
 	private JTextField field;
-	private double v1, v2;
+	private double v1;
 	private int op;
 	
 	public Panel() {
@@ -72,13 +72,26 @@ public class Panel extends JPanel{
 	public void clickOnButton(String command){
 		System.out.println(command);
 		switch (command){
-			case "+":
-				break;
+			case "+": setOperation(1); break;
+			case "-": setOperation(2); break;
+			case "*": setOperation(3); break;
+			case "/": setOperation(4); break;
+			case "C": clear(); break;
+			case "=": answer(); break;
+
 		}
+	}
+
+	public void clear(){
+		op = 0;
+		v1 = 0;
+		field.setText("0");
 	}
 
 	public void setOperation(int op){
 		v1 = Double.parseDouble(field.getText().trim());
 		this.op = op;
 	}
+
+
 }
