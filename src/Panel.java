@@ -38,7 +38,7 @@ public class Panel extends JPanel{
 	public void addTextField() {
 		field = new JTextField("0");
 		field.setBounds(0, 80, W, 70);
-		Font f = new Font("Arial", 1, 50);
+		Font f = new Font("Arial", 1, 40);
 		field.setFont(f);
 		field.setEditable(false);
 		add(field);
@@ -83,7 +83,12 @@ public class Panel extends JPanel{
 	}
 
 	public void addNumber(String number){
-		field.setText(field.getText() + number);
+		String text = field.getText();
+		if (text.equals("0"))
+			text = number;
+		else
+			text += number;
+		field.setText(text);
 	}
 
 	public void clear(){
@@ -96,16 +101,23 @@ public class Panel extends JPanel{
 		double v2 = Double.parseDouble(field.getText().trim());
 		switch (op){
 			case 0: System.out.println("no v1 value"); break;
-			case 1: field.setText(""+(v1+v2)); break;
-			case 2: field.setText(""+(v1-v2)); break;
-			case 3: field.setText(""+(v1*v2)); break;
+			case 1: showText(v1+v2); break;
+			case 2: showText(v1-v2); break;
+			case 3: showText(v1*v2); break;
 			case 4:
 				if (v2 == 0)
 					field.setText("Divizion by Zero");
 				else
-					field.setText(""+(v1/v2));
+					showText(v1/v2);
 				break;
 		}
+	}
+
+	public void showText(double value){
+		if (value == Math.floor(value))
+			field.setText(""+Math.round(value));
+		else
+			field.setText(""+value);
 	}
 
 	public void setOperation(int op){
