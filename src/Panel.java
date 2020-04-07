@@ -78,8 +78,12 @@ public class Panel extends JPanel{
 			case "/": setOperation(4); break;
 			case "C": clear(); break;
 			case "=": answer(); break;
-
+			default: addNumber(command); break;
 		}
+	}
+
+	public void addNumber(String number){
+		field.setText(field.getText() + number);
 	}
 
 	public void clear(){
@@ -107,6 +111,7 @@ public class Panel extends JPanel{
 	public void setOperation(int op){
 		v1 = Double.parseDouble(field.getText().trim());
 		this.op = op;
+		field.setText("0");
 	}
 
 
