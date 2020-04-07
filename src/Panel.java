@@ -16,7 +16,7 @@ public class Panel extends JPanel{
 	private final int W = 400, H = 560;
 	private JTextField field;
 	private double v1;
-	private int op;
+	private int op = 0;
 	
 	public Panel() {
 		setSize(W, H);
@@ -36,7 +36,7 @@ public class Panel extends JPanel{
 	}
 	
 	public void addTextField() {
-		field = new JTextField();
+		field = new JTextField("0");
 		field.setBounds(0, 80, W, 70);
 		Font f = new Font("Arial", 1, 50);
 		field.setFont(f);
@@ -86,6 +86,22 @@ public class Panel extends JPanel{
 		op = 0;
 		v1 = 0;
 		field.setText("0");
+	}
+
+	public void answer(){
+		double v2 = Double.parseDouble(field.getText().trim());
+		switch (op){
+			case 0: System.out.println("no v1 value"); break;
+			case 1: field.setText(""+(v1+v2)); break;
+			case 2: field.setText(""+(v1-v2)); break;
+			case 3: field.setText(""+(v1*v2)); break;
+			case 4:
+				if (v2 == 0)
+					field.setText("Divizion by Zero");
+				else
+					field.setText(""+(v1/v2));
+				break;
+		}
 	}
 
 	public void setOperation(int op){
